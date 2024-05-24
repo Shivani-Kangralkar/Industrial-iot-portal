@@ -1,21 +1,21 @@
-import React, { useMemo } from "react";
-
-// MRT Imports
-import {
-  MaterialReactTable,
-  useMaterialReactTable,
-  MRT_GlobalFilterTextField,
-  MRT_ToggleFiltersButton,
-} from "material-react-table";
-
-// Material UI Imports
-import { Box, lighten , Checkbox, TableHead  } from "@mui/material";
-
-// Mock Data
+import React, { useMemo, useState } from "react";
+import { MaterialReactTable, useMaterialReactTable, MRT_GlobalFilterTextField, } from "material-react-table";
+import { Box, lighten, Button, Checkbox, Typography ,  Menu, MenuItem } from "@mui/material";
 import { info } from "../../constants/info";
+
 
 const Example = () => {
   console.log("Info", info);
+  const [anchorEl, setAnchorEl] = useState(null); // State to manage the anchor element for the dropdown menu
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
 
   const columns = useMemo(
     () => [
@@ -26,7 +26,7 @@ const Example = () => {
           <Checkbox
             checked={row.isSelected}
             onChange={() => row.toggleRowSelected()}
-            sx={{ "& .MuiSvgIcon-root": { fontSize: 24 }, "&.Mui-checked": { color: "light" } }}
+            sx={{ "& .MuiSvgIcon-root": { fontSize: 24 }, "&.Mui-checked": { color: "#bbdefb"} }}
           />
         ),
         size: 50,
@@ -51,7 +51,6 @@ const Example = () => {
               loading="lazy"
               style={{ borderRadius: "50%" }}
             />
-            {/* using renderedCellValue instead of cell.getValue() preserves filter match highlighting */}
             <span>{renderedCellValue}</span>
           </Box>
         ),
@@ -93,17 +92,26 @@ const Example = () => {
   }, [info]);
 
   console.log("tableData", tableData);
+  const handleAction1 = () => {
+    // Handle action 1
+    console.log("Action 1 clicked");
+  };
+
+  const handleAction2 = () => {
+    // Handle action 2
+    console.log("Action 2 clicked");
+  };
 
   const table = useMaterialReactTable({
     columns,
-    data: tableData, // data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
+    data: tableData,
     enableColumnFilterModes: true,
     enableColumnOrdering: true,
     enableGrouping: true,
     enableColumnPinning: true,
     enableFacetedValues: true,
-    enableRowActions: false, // Disable row actions
-    enableRowSelection: false, // Disable row selection
+    enableRowActions: false,
+    enableRowSelection: false,
     initialState: {
       showColumnFilters: true,
       showGlobalFilter: true,
@@ -129,13 +137,53 @@ const Example = () => {
           gap: "0.5rem",
           p: "8px",
           justifyContent: "space-between",
+          alignItems: "center",
         })}
       >
+
         <Box sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-          {/* import MRT sub-components */}
           <MRT_GlobalFilterTextField table={table} />
-          <MRT_ToggleFiltersButton table={table} />
+          <Button variant="contained" color="primary" >
+          <Typography
+                sx={{ textAlign: "center", fontSize: "12px"}}
+              >
+              Create User
+            </Typography>
+          </Button>
+
+          <Button variant="contained" sx={{backgroundColor:"#bbdefb", color: "black"}}>
+          <Typography
+          variant="subtitle2"
+                sx={{ textAlign: "center", fontSize: "12px"}}
+              >
+              Add to Group
+            </Typography>
+            
+          </Button>
+
+
+
+
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+          >
+            <MenuItem onClick={handleAction1}>Action 1</MenuItem>
+            <MenuItem onClick={handleAction2}>Action 2</MenuItem>
+          </Menu>
         </Box>
+
+        <Button onClick={handleMenuOpen} variant="contained" sx={{backgroundColor:"#e3f2fd", color: "black",}}>
+          <Typography
+          variant="subtitle2"
+                sx={{ textAlign: "center", fontSize: "12px"}}
+              >
+              Actions
+            </Typography>
+            
+          </Button>
+
       </Box>
     ),
   });
@@ -143,12 +191,4 @@ const Example = () => {
   return <MaterialReactTable table={table} />;
 };
 
-const User = () => {
-  return (
-    <Box>
-      <Example />
-    </Box>
-  );
-};
-
-export default User;
+export default Example;
