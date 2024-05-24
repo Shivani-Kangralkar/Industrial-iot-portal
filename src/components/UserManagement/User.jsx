@@ -5,7 +5,6 @@ import { info } from "../../constants/info";
 
 
 const Example = () => {
-  console.log("Info", info);
   const [anchorEl, setAnchorEl] = useState(null); // State to manage the anchor element for the dropdown menu
 
   const handleMenuOpen = (event) => {
@@ -78,8 +77,32 @@ const Example = () => {
       {
         accessorKey: "group",
         header: "Group",
-        size: 150,
-      },
+        size: 250,
+        Cell: ({ row }) => {
+          console.log("sss", row)
+          if (!row.original.group || !Array.isArray(row.original.group)) {
+            console.log("Group Items:"); // Log message when group is undefined or not an array
+            return null;
+          }
+      
+          const groupItems = row.original.group.map((item, index) => Object.values(item)[0]);
+      
+          console.log("Group Items:", groupItems); // Log group items in the console
+      
+          return (
+            <div>
+              <span style={{ color: 'blue' }}>
+                {groupItems.map((groupName, index) => (
+                  <React.Fragment key={index}>
+                    {groupName}
+                    {index !== groupItems.length - 1 && ', '}
+                  </React.Fragment>
+                ))}
+              </span>
+            </div>
+          );
+        }
+      }
     ],
     []
   );
@@ -91,7 +114,6 @@ const Example = () => {
     return [];
   }, [info]);
 
-  console.log("tableData", tableData);
   const handleAction1 = () => {
     // Handle action 1
     console.log("Action 1 clicked");

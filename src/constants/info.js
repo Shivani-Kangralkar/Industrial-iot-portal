@@ -5,7 +5,11 @@ export const info = [
     employee_id: "E001",
     role: "Manager",
     email: "asmith@example.com",
-    group: "Administration",
+    group: [
+        {group2: "Group 2"},
+        {group4: "Group 4"},
+        {group5: "Group 5"},
+        ],
     avatar:
       'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/106.jpg',
   },
@@ -15,7 +19,11 @@ export const info = [
     employee_id: "E002",
     role: "Developer",
     email: "bjohnson@example.com",
-    group: "Engineering",
+    group: [
+        {group2: "Group 2"},
+        {group4: "Group 4"},
+        {group5: "Group 5"},
+        ],
     avatar:
       'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/420.jpg',
   },
@@ -25,7 +33,11 @@ export const info = [
     employee_id: "E003",
     role: "Designer",
     email: "cbrown@example.com",
-    group: "Design",
+    group: [
+        {group2: "Group 2"},
+        {group4: "Group 4"},
+        {group5: "Group 5"},
+        ],
     avatar:
       'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1091.jpg',
   },
@@ -35,7 +47,11 @@ export const info = [
     employee_id: "E004",
     role: "HR",
     email: "dprince@example.com",
-    group: "Human Resources",
+    group: [
+        {group2: "Group 2"},
+        {group4: "Group 4"},
+        {group5: "Group 5"},
+        ],
     avatar:
       'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/420.jpg',
   },
@@ -45,7 +61,11 @@ export const info = [
     employee_id: "E005",
     role: "QA Engineer",
     email: "ewright@example.com",
-    group: "Quality Assurance",
+    group: [
+        {group2: "Group 2"},
+        {group4: "Group 4"},
+        {group5: "Group 5"},
+        ],
     avatar:
       'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/106.jpg',
   },
