@@ -77,7 +77,7 @@ const Example = () => {
       {
         accessorKey: "group",
         header: "Group",
-        size: 250,
+        size: 300,
         Cell: ({ row }) => {
           console.log("sss", row)
           if (!row.original.group || !Array.isArray(row.original.group)) {
@@ -85,24 +85,34 @@ const Example = () => {
             return null;
           }
       
-          const groupItems = row.original.group.map((item, index) => Object.values(item)[0]);
-      
-          console.log("Group Items:", groupItems); // Log group items in the console
+          // Mapping of group names to colors
+          const groupColorMap = {
+            "Group 2": "#a5d6a7",
+            "Group 4": "#90caf9",
+            "Group 5": "#d1c4e9"
+            // Add more mappings as needed
+          };
       
           return (
             <div>
-              <span style={{ color: 'blue' }}>
-                {groupItems.map((groupName, index) => (
+              {row.original.group.map((item, index) => {
+                const groupName = Object.values(item)[0];
+                const backgroundColor = groupColorMap[groupName] || 'black'; // Default color if not found in map
+                const color = 'black'
+                return (
                   <React.Fragment key={index}>
-                    {groupName}
-                    {index !== groupItems.length - 1 && ', '}
+                    <Button style={{ color: color , backgroundColor: backgroundColor}}>
+                      {groupName}
+                    </Button>
+                    {index !== row.original.group.length - 1 && ' '}
                   </React.Fragment>
-                ))}
-              </span>
+                );
+              })}
             </div>
           );
         }
       }
+      
     ],
     []
   );
