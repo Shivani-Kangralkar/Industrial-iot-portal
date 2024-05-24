@@ -51,7 +51,7 @@ export default function Login() {
         sm={4}
         md={6}
         sx={{
-          backgroundColor: theme.palette.primary.main,
+          backgroundColor: "0080FF",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -131,7 +131,7 @@ export default function Login() {
                       sx={{ display: "flex", alignItems: "center" }}
                     >
                       <EmailOutlinedIcon
-                        sx={{ color: theme.palette.primary.main }}
+                        sx={{ color: '#0080FF' }}
                       />
                       {inputs.email === "" && (
                         <Typography
