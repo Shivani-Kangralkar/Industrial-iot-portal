@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CssBaseline from '@mui/material/CssBaseline';
 
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useTheme } from "@mui/material/styles";
@@ -14,7 +15,8 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../redux-store/ToggleSlice";
-import { sidebarOpen } from "../redux-store/ToggleSlice";
+import { useSelector } from "react-redux";
+
 
 
 function Header() {
@@ -26,16 +28,20 @@ function Header() {
   const toggleMenuHander = () => {
     console.log("click")
     dispatch(toggleMenu())
-    dispatch(sidebarOpen())
   }
+  const isMenuOpen = useSelector((state) => state.toggle.isMenuOpen);
 
 
 
 
 
   return (
+
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
     <AppBar
-      position="sticky"
+    position="fixed"
+    open= {isMenuOpen}
       sx={{ backgroundColor: "#ffffff", color: "#000000" ,}}
     >
       <Toolbar>
@@ -88,6 +94,10 @@ function Header() {
         </Box>
       </Toolbar>
     </AppBar>
+
+    </Box>
+
+    
   );
 }
 export default Header;

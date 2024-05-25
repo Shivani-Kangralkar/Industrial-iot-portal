@@ -1,10 +1,22 @@
 import React, { useMemo, useState } from "react";
-import { MaterialReactTable, useMaterialReactTable, MRT_GlobalFilterTextField, } from "material-react-table";
-import { Box, lighten, Button, Checkbox, Typography ,  Menu, MenuItem } from "@mui/material";
+import {
+  MaterialReactTable,
+  useMaterialReactTable,
+  MRT_GlobalFilterTextField,
+} from "material-react-table";
+import {
+  Box,
+  lighten,
+  Button,
+  Checkbox,
+  Typography,
+  Menu,
+  MenuItem,
+} from "@mui/material";
 import { info } from "../../constants/info";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-
-const Example = () => {
+const User = () => {
   const [anchorEl, setAnchorEl] = useState(null); // State to manage the anchor element for the dropdown menu
 
   const handleMenuOpen = (event) => {
@@ -15,7 +27,6 @@ const Example = () => {
     setAnchorEl(null);
   };
 
-
   const columns = useMemo(
     () => [
       {
@@ -25,7 +36,10 @@ const Example = () => {
           <Checkbox
             checked={row.isSelected}
             onChange={() => row.toggleRowSelected()}
-            sx={{ "& .MuiSvgIcon-root": { fontSize: 24 }, "&.Mui-checked": { color: "#bbdefb"} }}
+            sx={{
+              "& .MuiSvgIcon-root": { fontSize: 24 },
+              "&.Mui-checked": { color: "#bbdefb" },
+            }}
           />
         ),
         size: 50,
@@ -79,40 +93,38 @@ const Example = () => {
         header: "Group",
         size: 300,
         Cell: ({ row }) => {
-          console.log("sss", row)
           if (!row.original.group || !Array.isArray(row.original.group)) {
             console.log("Group Items:"); // Log message when group is undefined or not an array
             return null;
           }
-      
-          // Mapping of group names to colors
+
           const groupColorMap = {
             "Group 2": "#a5d6a7",
             "Group 4": "#90caf9",
-            "Group 5": "#d1c4e9"
-            // Add more mappings as needed
+            "Group 5": "#d1c4e9",
           };
-      
+
           return (
             <div>
               {row.original.group.map((item, index) => {
                 const groupName = Object.values(item)[0];
-                const backgroundColor = groupColorMap[groupName] || 'black'; // Default color if not found in map
-                const color = 'black'
+                const backgroundColor = groupColorMap[groupName] || "black"; // Default color if not found in map
+                const color = "black";
                 return (
                   <React.Fragment key={index}>
-                    <Button style={{ color: color , backgroundColor: backgroundColor}}>
+                    <Button
+                      style={{ color: color, backgroundColor: backgroundColor }}
+                    >
                       {groupName}
                     </Button>
-                    {index !== row.original.group.length - 1 && ' '}
+                    {index !== row.original.group.length - 1 && " "}
                   </React.Fragment>
                 );
               })}
             </div>
           );
-        }
-      }
-      
+        },
+      },
     ],
     []
   );
@@ -172,29 +184,25 @@ const Example = () => {
           alignItems: "center",
         })}
       >
-
         <Box sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
           <MRT_GlobalFilterTextField table={table} />
-          <Button variant="contained" color="primary" >
-          <Typography
-                sx={{ textAlign: "center", fontSize: "12px"}}
-              >
+          <Button variant="contained" color="primary">
+            <Typography sx={{ textAlign: "center", fontSize: "12px" }}>
               Create User
             </Typography>
           </Button>
 
-          <Button variant="contained" sx={{backgroundColor:"#bbdefb", color: "black"}}>
-          <Typography
-          variant="subtitle2"
-                sx={{ textAlign: "center", fontSize: "12px"}}
-              >
+          <Button
+            variant="contained"
+            sx={{ backgroundColor: "#bbdefb", color: "black" }}
+          >
+            <Typography
+              variant="subtitle2"
+              sx={{ textAlign: "center", fontSize: "12px" }}
+            >
               Add to Group
             </Typography>
-            
           </Button>
-
-
-
 
           <Menu
             anchorEl={anchorEl}
@@ -206,21 +214,39 @@ const Example = () => {
           </Menu>
         </Box>
 
-        <Button onClick={handleMenuOpen} variant="contained" sx={{backgroundColor:"#e3f2fd", color: "black",}}>
+        <Button
+          onClick={handleMenuOpen}
+          variant="contained"
+          sx={{ backgroundColor: "#e3f2fd", color: "black" }}
+        >
           <Typography
-          variant="subtitle2"
-                sx={{ textAlign: "center", fontSize: "12px"}}
-              >
-              Actions
-            </Typography>
-            
-          </Button>
-
+            variant="subtitle2"
+            sx={{ textAlign: "center", fontSize: "12px" }}
+          >
+            Actions
+          </Typography>
+        </Button>
       </Box>
     ),
   });
 
-  return <MaterialReactTable table={table} />;
+  return (
+    <>
+      <Box sx={{ ml: 3 }}>
+        <Box sx={{ display: "flex" ,  alignItems: "center", mt: 4, pt: 2}}>
+          <Typography sx={{ fontWeight: "bold", my: 3, fontSize: "25px" }}>
+            User Management
+          </Typography>
+          <ArrowForwardIosIcon sx={{ fontSize: '20px', mr: 1, ml: 1 }} />
+          <Typography sx={{ fontWeight: "bold", my: 3, fontSize: "25px" }}>
+            Users
+          </Typography>
+        </Box>
+
+        <MaterialReactTable table={table} />
+      </Box>
+    </>
+  );
 };
 
-export default Example;
+export default User;

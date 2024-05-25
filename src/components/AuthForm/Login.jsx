@@ -38,7 +38,7 @@ export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('Form Data:', inputs);
-    navigate(`/`);
+    navigate(`/app`);
   };
 
   const isLoginDisabled = inputs.email === '' || inputs.password === '';
@@ -51,7 +51,7 @@ export default function Login() {
         sm={4}
         md={6}
         sx={{
-          backgroundColor: "0080FF",
+          backgroundColor: "#3f51b5",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -63,7 +63,7 @@ export default function Login() {
         }}
       >
         <img
-          src="/images/ip.jpg"
+          src="/images/img3.png"
           alt="Centered Image"
           style={{
             maxWidth: "50%",

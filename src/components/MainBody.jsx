@@ -3,19 +3,19 @@ import Header from "./Header";
 import SideBar from "./SideBar";
 import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const MainBody = () => {
-  return (
+  const isMenuOpen = useSelector((state) => state.toggle.isMenuOpen);
 
+  console.log("isSidebarOpen", isMenuOpen);
+
+  return (
     <>
-      <Box>
-        <Header />
-        <Box sx={{display: "flex", mt: 2, width: "w-auto"}}>
-          <SideBar />
-          {
-            <Outlet />
-          }
-        </Box>
+      <Header />
+      <Box sx={{ display: "flex", mt: 2, width: "auto" }}>
+        <SideBar />
+        {<Outlet />}
       </Box>
     </>
   );

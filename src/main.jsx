@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Box } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { blue } from '@mui/material/colors';
 import {Provider} from 'react-redux'
@@ -36,11 +35,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
   <React.StrictMode>
     <CssBaseline />
-    <Box>
       <ThemeProvider theme={theme}>
         <App />
       </ThemeProvider>
-    </Box>
   </React.StrictMode>
   </Provider>
 );
