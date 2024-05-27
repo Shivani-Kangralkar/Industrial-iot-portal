@@ -1,10 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { close } from "../../redux-store/ToggleSlice";
 import { Button, Box, Typography } from "@mui/material";
+import CreateUser from "../popUp/CreateUser";
+import SuccessModal from "../popUp/SuccessModal";
 
 const User_Management = () => {
   const dispatch = useDispatch();
+  const [modal, setModal] = useState(false);
+  const [successModal, setSuccessModal] = useState(false);
 
   useEffect(() => {
     dispatch(close());
@@ -54,12 +58,19 @@ const User_Management = () => {
           type="submit"
           variant="contained"
           sx={{ mt: 1, mb: 2, width: "10%", py: 2 }}
+          onClick={() => setModal(true)}
         >
           <Typography sx={{ textAlign: "center", fontSize: "15px" }}>
             CREATE USERS
           </Typography>
         </Button>
       </Box>
+
+      {modal && <CreateUser setModal={setModal} modal={modal} setSuccessModal={setSuccessModal} />}
+
+      {successModal && (
+        <SuccessModal successModal={successModal} setSuccessModal={setSuccessModal} />
+      )}
     </Box>
   );
 };

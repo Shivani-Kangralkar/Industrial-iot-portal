@@ -8,8 +8,6 @@ import { useSelector } from "react-redux";
 const MainBody = () => {
   const isMenuOpen = useSelector((state) => state.toggle.isMenuOpen);
 
-  console.log("isSidebarOpen", isMenuOpen);
-
   return (
     <>
       <Header />

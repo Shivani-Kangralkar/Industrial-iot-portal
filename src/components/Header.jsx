@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import CssBaseline from '@mui/material/CssBaseline';
-
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useTheme } from "@mui/material/styles";
 import {
@@ -26,7 +25,6 @@ function Header() {
   const dispatch = useDispatch()
 
   const toggleMenuHander = () => {
-    console.log("click")
     dispatch(toggleMenu())
   }
   const isMenuOpen = useSelector((state) => state.toggle.isMenuOpen);
