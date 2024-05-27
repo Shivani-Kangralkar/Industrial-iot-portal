@@ -1,4 +1,4 @@
 # iot-portal
 
-Link to view project live : https://industrial-iot-portal.netlify.app/auth
+Link to view project live : https://industrial-iot-portal.netlify.app
  
